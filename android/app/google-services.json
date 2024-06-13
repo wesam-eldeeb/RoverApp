@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "147523181168",
+    "project_id": "rover-422020",
+    "storage_bucket": "rover-422020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147523181168:android:80e76eee6bdb8843f032b5",
+        "android_client_info": {
+          "package_name": "com.example.google_map_s"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADgXi8YUC-iV31v-fW2ScifDoCc_OQrS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
