@@ -7,7 +7,7 @@ import '../model/journey.dart';
 
 class ApiService {
   static final Dio _dio = Dio(BaseOptions(
-    baseUrl: 'https://alaaynassar-001-site1.atempurl.com/api/',
+    baseUrl: 'http://alaaynassar-001-site1.atempurl.com/api/Trip/create',
     headers: {
       'Authorization':
           'Basic ' + base64Encode(utf8.encode('11178361:60-dayfreetrial')),
