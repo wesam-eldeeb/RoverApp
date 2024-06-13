@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
-import 'model/journey_provider.dart';
+import 'featuers/Apis/Trip/model/journey_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -127,7 +127,7 @@ import 'package:provider/provider.dart';
 
 // import 'package:google_map_s/providers/journey_provider.dart';
 
-import '../../../model/journey_provider.dart';
+import '../../Apis/Trip/model/journey_provider.dart';
 
 class GenderSelection extends StatefulWidget {
   const GenderSelection({super.key});

@@ -552,8 +552,8 @@ import 'package:Rover/featuers/startJourny/widgets/gender_journy_type.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../model/journey.dart';
-import '../../../model/journey_provider.dart';
+import '../../Apis/Trip/model/journey.dart';
+import '../../Apis/Trip/model/journey_provider.dart';
 
 class StartJourney extends StatelessWidget {
   final TextEditingController _fromController = TextEditingController();
