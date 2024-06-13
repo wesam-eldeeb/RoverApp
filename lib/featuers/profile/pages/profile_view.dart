@@ -1,22 +1,39 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
+
 import 'package:Rover/featuers/config/constants/colors/my_colors.dart';
 import 'package:Rover/featuers/login/widgets/text_formfild_custom.dart';
 import 'package:Rover/featuers/profile/widgets/gender_profile.dart';
 import 'package:Rover/featuers/settings/setting_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProfileView extends StatelessWidget {
-  static const String routeName =
-      "Profile"; //main السطر دا عشان انادي علي الصفحه دي في ال
+import '../../../image_functions.dart';
 
-  var formKey = GlobalKey<FormState>(); //(1)
-
-  var FirstNameController = TextEditingController();
-  var LastNameController = TextEditingController();
-  var PhoneNumberController = TextEditingController();
-  var OtherPhoneNumberController = TextEditingController();
+class ProfileView extends StatefulWidget {
+  static const String routeName = "Profile";
 
   ProfileView({super.key});
+
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  File? pickedImage;
+
+  String? _url;
+
+  //main السطر دا عشان انادي علي الصفحه دي في ال
+  var formKey = GlobalKey<FormState>();
+
+  //(1)
+  var FirstNameController = TextEditingController();
+
+  var LastNameController = TextEditingController();
+
+  var PhoneNumberController = TextEditingController();
+
+  var OtherPhoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +81,33 @@ class ProfileView extends StatelessWidget {
                           ),
                           //image
                           CircleAvatar(
-                              radius: mediaQuary.width * .15,
-                              backgroundImage: const AssetImage(
-                                "assets/images/profile.png",
-                              )),
+                            radius: 60,
+                            backgroundColor: Colors.grey[300],
+                            backgroundImage: pickedImage == null
+                                ? null
+                                : FileImage(pickedImage! as File),
+                            child: pickedImage == null
+                                ? const Icon(
+                                    Icons.person,
+                                    size: 80,
+                                    color: MyColors.red,
+                                  )
+                                : null,
+                          ),
+                          Container(
+                            height: 40,
+                            alignment: Alignment.bottomCenter,
+                            child: InkWell(
+                              onTap: () {
+                                daiilog();
+                              },
+                              child: Icon(
+                                Icons.camera_alt_outlined,
+                                color: MyColors.red,
+                                size: 25,
+                              ),
+                            ),
+                          ),
 
                           //SizedBox
                           SizedBox(
@@ -213,5 +253,69 @@ class ProfileView extends StatelessWidget {
                 )),
           ),
         ));
+  }
+
+  void daiilog() {
+    showDialog(
+        builder: (context) => AlertDialog(
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                          onPressed: () async {
+                            File? temp = await ImageFunctions.cameraPicker();
+                            if (temp != null) {
+                              pickedImage = temp;
+                            }
+                            setState(() {});
+                          },
+                          icon: Icon(
+                            Icons.camera_alt_outlined,
+                            size: 40,
+                            color: MyColors.red,
+                          )),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Text(
+                        "Camera",
+                        style: TextStyle(fontSize: 12, color: MyColors.red),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                          onPressed: () async {
+                            File? temp = await ImageFunctions.galleryPicker();
+                            if (temp != null) {
+                              pickedImage = temp;
+                            }
+                            setState(() {});
+                          },
+                          icon: Icon(
+                            Icons.image_outlined,
+                            size: 40,
+                            color: MyColors.red,
+                          )),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Text(
+                        "Gallary",
+                        style: TextStyle(fontSize: 12, color: MyColors.red),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+        context: context);
   }
 }

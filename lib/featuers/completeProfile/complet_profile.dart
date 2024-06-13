@@ -2,17 +2,11 @@
 import 'dart:io';
 
 import 'package:Rover/featuers/config/constants/colors/my_colors.dart';
-import 'package:Rover/featuers/login/pages/login_view.dart';
 import 'package:Rover/featuers/login/widgets/text_formfild_custom.dart';
-import 'package:Rover/featuers/register/widgets/gender_register_type.dart';
 import 'package:Rover/featuers/settings/setting_provider.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:Rover/image_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../../image_functions.dart';
 // import 'package:tutorial_april/utils.dart';
 
 class CompleteProfile extends StatefulWidget {
@@ -84,38 +78,62 @@ class _CompleteProfileState extends State<CompleteProfile> {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch, /////
                       children: [
-                        Column(
-                          children: [
-                            Text("Enter Your image is Car"),
-                            Image.asset("assets/images/logo red.png",width: 100,height: 100,),
-                          ],
-                        ),
-                        SizedBox(),
-                            Column(
-                          children: [
-                            Text("Enter Your image linces is Car"),
-                            Image.asset("assets/images/logo red.png",width: 100,height: 100,),
-                          ],
-                        ),
-                        SizedBox(),
-                            Column(
-                          children: [
-                            Text("Enter Your image linces is Driver"),
-                            Image.asset("assets/images/logo red.png",width: 100,height: 100,),
-                          ],
-                        ),
-                        SizedBox(),
-                        ////////////1//////////
-                    //     CircleAvatar(
-                    //       radius: 60,
-                    //       backgroundColor: Colors.grey[300],
-                    //       backgroundImage: pickedImage == null
-                    //           ? null
-                    //           : FileImage(pickedImage!),
-                    //       child: pickedImage == null
-                    //           ? const 
-                    //           Icon(
-                    //               Icons.person,
+                          Column(
+                            children: [
+                              Text(
+                                "Upload your car image",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              ImageFrame()
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                "Upload your car linces image",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              ImageFrame()
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                "Upload your image of the driver's license",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              ImageFrame()
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          ////////////1//////////
+                          //     CircleAvatar(
+                          //       radius: 60,
+                          //       backgroundColor: Colors.grey[300],
+                          //       backgroundImage: pickedImage == null
+                          //           ? null
+                          //           : FileImage(pickedImage!),
+                          //       child: pickedImage == null
+                          //           ? const
+                          //           Icon(
+                          //               Icons.person,
                     //               size: 80,
                     //               color: MyColors.red,
                     //             )
@@ -199,18 +217,18 @@ class _CompleteProfileState extends State<CompleteProfile> {
                             //Number Car
                           
                                  TextFormFieldCustom(
-                                  labelText: "Number Car",
-                                  //  hintText: "Enter Your FullName",
-                                  prefixIcon: const Icon(Icons.car_rental),
-                                  controller: NumberCarController,
-                                  keyboardType: TextInputType.name,
-                                  ////////validator//////
-                                  validator: (value) {
-                                    if (value == null || value.trim().isEmpty) {
-                                      return 'you must enter your Numder Car';
-                                    }
-                                  },
-                                  /////////////
+                                   labelText: "Car Number",
+                            //  hintText: "Enter Your FullName",
+                            prefixIcon: const Icon(Icons.car_rental_outlined),
+                            controller: NumberCarController,
+                            keyboardType: TextInputType.name,
+                            ////////validator//////
+                            validator: (value) {
+                              if (value == null || value.trim().isEmpty) {
+                                return 'You must enter your car number ';
+                              }
+                            },
+                            /////////////
                                 ),
                               
                             
@@ -220,20 +238,20 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         ),
                         //Number License Car
                         TextFormFieldCustom(
-                          labelText: "Number License Car",
-                          hintText: "Enter Number License Car",
-                          prefixIcon: Icon(Icons.email),
-                          controller: NumberLicenseCarController,
-                          keyboardType: TextInputType.number,
+                            labelText: "Car's License Number ",
+                            hintText: "Enter Car's License Number",
+                            prefixIcon: Icon(Icons.local_activity),
+                            controller: NumberLicenseCarController,
+                            keyboardType: TextInputType.number,
 
-                          ////////validator//////
-                                  validator: (value) {
-                                    if (value == null || value.trim().isEmpty) {
-                                      return 'you must enter your Number License Car';
-                                    }
-                                  },
-                                  /////////////
-                        ),
+                            ////////validator//////
+                            validator: (value) {
+                              if (value == null || value.trim().isEmpty) {
+                                return "you must enter your car's license number";
+                              }
+                            },
+                            /////////////
+                          ),
 
                         ///Sizebox
                         SizedBox(
@@ -241,20 +259,19 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         ),
                           //Number License Driver
                         TextFormFieldCustom(
-                          labelText: "Number License  Driver",
-                          hintText: "Enter Number License Driver",
-                          prefixIcon: Icon(Icons.email),
-                          controller: NumberLicenseDriverController,
-                          keyboardType: TextInputType.number,
+                            labelText: "Driver's License Number",
+                            hintText: "Enter Driver's License Number",
+                            prefixIcon: Icon(Icons.local_police),
+                            controller: NumberLicenseDriverController,
+                            keyboardType: TextInputType.number,
 
-                          ////////validator//////
-                                  validator: (value) {
-                                    if (value == null || value.trim().isEmpty) {
-                                      return 'you must enter your Number License Driver';
-                                    }
-                                  },
-                      
-                        ),
+                            ////////validator//////
+                            validator: (value) {
+                              if (value == null || value.trim().isEmpty) {
+                                return "you must enter your driver's license number";
+                              }
+                            },
+                          ),
 
                         ///Sizebox
                         SizedBox(
@@ -263,20 +280,19 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         
                           //Car is Model
                         TextFormFieldCustom(
-                          labelText: "Car is Model",
-                          hintText: "Car is Model",
-                          prefixIcon: Icon(Icons.email),
-                          controller: CarIsModelController,
-                          keyboardType: TextInputType.emailAddress,
+                            labelText: "Car Model",
+                            hintText: "Car Model",
+                            prefixIcon: Icon(Icons.car_crash_outlined),
+                            controller: CarIsModelController,
+                            keyboardType: TextInputType.emailAddress,
 
-                          ////////validator//////
-                                  validator: (value) {
-                                    if (value == null || value.trim().isEmpty) {
-                                      return 'you must enter your Number License Driver';
-                                    }
-                                  },
-                      
-                        ),
+                            ////////validator//////
+                            validator: (value) {
+                              if (value == null || value.trim().isEmpty) {
+                                return 'you must enter your car model';
+                              }
+                            },
+                          ),
 
                         ///Sizebox
                         SizedBox(
@@ -285,19 +301,18 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         //Description
                         TextFormFieldCustom(
                           labelText: "Description",
-                          hintText: "Description",
-                          prefixIcon: Icon(Icons.email),
-                          controller: DescriptionController,
-                          keyboardType: TextInputType.emailAddress,
+                            hintText: "Description",
+                            prefixIcon: Icon(Icons.description),
+                            controller: DescriptionController,
+                            keyboardType: TextInputType.emailAddress,
 
-                          ////////validator//////
-                                  validator: (value) {
-                                    if (value == null || value.trim().isEmpty) {
-                                      return 'you must enter your Description';
-                                    }
-                                  },
-                      
-                        ),
+                            ////////validator//////
+                            validator: (value) {
+                              if (value == null || value.trim().isEmpty) {
+                                return 'you must enter your description';
+                              }
+                            },
+                          ),
 
                       
       //                   ///ElevatedButton

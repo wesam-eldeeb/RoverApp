@@ -1,8 +1,8 @@
 //ElvationButtonDevolope(********* Driver)
 
+import 'package:Rover/featuers/completeProfile/complet_profile.dart';
 import 'package:Rover/featuers/config/constants/colors/my_colors.dart';
 import 'package:Rover/featuers/home/widget/elevation_button_map.dart';
-import 'package:Rover/featuers/profile/pages/profile_view.dart';
 import 'package:Rover/featuers/startJourny/pages/start_journy.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +38,7 @@ class ElvationButtonDriver extends StatelessWidget {
                       onPreseed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (BuildContext context) {
-                          return ProfileView();
+                              return CompleteProfile();
                         }));
                       }),
                   //  ElevationButtonDriver createTripe
