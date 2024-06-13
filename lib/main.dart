@@ -1,4 +1,6 @@
 import 'package:Rover/cache_helper.dart';
+import 'package:Rover/featuers/askAndAnswer/pages/ask_and_answer.dart';
+import 'package:Rover/featuers/chat/pages/chat.dart';
 import 'package:Rover/featuers/completeProfile/complet_profile.dart';
 import 'package:Rover/featuers/config/constants/applacation_theme_manger.dart';
 import 'package:Rover/featuers/home/pages/home_map_view.dart';
