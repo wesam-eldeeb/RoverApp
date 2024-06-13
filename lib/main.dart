@@ -47,20 +47,20 @@ class MyApp extends StatelessWidget {
       darkTheme: ApplacationThemeManger.darkTheme,
 
       initialRoute: SplashView.routeName,
-      // routes: {
-      //   SplashView.routeName: (context) => const SplashView(),
-      //   LoginView.routeName: (context) => LoginView(),
-      //   RegisterView.routeName: (context) => RegisterView(),
-      //   HomeMapView.routeName: (context) => HomeMapView(),
-      //   // VerivicationView.routeName: (context) => VerivicationView(),
-      // },
-      // home: FirebaseAuth.instance.currentUser != null &&
-      //         FirebaseAuth.instance.currentUser!.emailVerified
-      //     ? HomeMapView()
-      //     : LoginView(),
+      routes: {
+        SplashView.routeName: (context) => const SplashView(),
+        LoginView.routeName: (context) => LoginView(),
+        RegisterView.routeName: (context) => RegisterView(),
+        HomeMapView.routeName: (context) => HomeMapView(),
+        // VerivicationView.routeName: (context) => VerivicationView(),
+      },
+      home: FirebaseAuth.instance.currentUser != null &&
+              FirebaseAuth.instance.currentUser!.emailVerified
+          ? HomeMapView()
+          : LoginView(),
       
       //  home:VerivicationView() ,
-home:CompleteProfile(),
+//home:CompleteProfile(),
       //    home: HomeMapView(),
 //  home: LoginView(),
 //home: RegisterView(),
