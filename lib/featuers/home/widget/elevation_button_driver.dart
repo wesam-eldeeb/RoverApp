@@ -34,16 +34,16 @@ class ElvationButtonDriver extends StatelessWidget {
                 children: [
                   //  ElevationButtonDriver CompletProfile
                   ElevationButtonMap(
-                      text: "CompleteProfile",
+                      text: "Complete Profile",
                       onPreseed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (BuildContext context) {
-                              return CompleteProfile();
+                          return CompleteProfile();
                         }));
                       }),
                   //  ElevationButtonDriver createTripe
                   ElevationButtonMap(
-                      text: "StartJourney",
+                      text: "Start Journey",
                       onPreseed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (BuildContext context) {
