@@ -11,7 +11,7 @@ class MytripScreenPassenger extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'MyTrip(Passenger)',
+            'MyTrips',
             style: TextStyle(
               color: Color(0xff030F09),
               fontSize: 18,
