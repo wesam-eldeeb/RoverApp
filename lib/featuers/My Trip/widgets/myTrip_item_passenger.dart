@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MyTripDelete extends StatelessWidget {
+class MyTripItemPassenger extends StatelessWidget {
   String date;
   String day;
   String time;
@@ -9,7 +9,7 @@ class MyTripDelete extends StatelessWidget {
   String price;
   AssetImage image;
 
-  MyTripDelete(
+  MyTripItemPassenger(
       {required this.date,
       required this.day,
       required this.time,
@@ -22,7 +22,7 @@ class MyTripDelete extends StatelessWidget {
   Widget build(BuildContext context) {
     var mediaQuary = MediaQuery.of(context).size;
     return Container(
-        height: MediaQuery.sizeOf(context).height * 0.25,
+        height: MediaQuery.sizeOf(context).height * 0.24,
         width: MediaQuery.sizeOf(context).width * 0.88,
         margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -64,30 +64,32 @@ class MyTripDelete extends StatelessWidget {
                                 color: Color(0xff707070),
                                 fontSize: 15.0,
                                 fontWeight: FontWeight.bold)),
-                        SizedBox(width: mediaQuary.width * 0.02),
+                        SizedBox(
+                            width: MediaQuery.sizeOf(context).width * 0.02),
                         Text('| $day |',
                             style: const TextStyle(
                                 fontSize: 15.0, color: Color(0xffE60024))),
-                        SizedBox(width: mediaQuary.width * 0.02),
+                        SizedBox(
+                            width: MediaQuery.sizeOf(context).width * 0.02),
                         Text(time,
                             style: const TextStyle(
                                 fontSize: 15.0, color: Color(0xffA8A8A8))),
                       ],
                     ),
                     SizedBox(
-                      height: mediaQuary.height * 0.01,
+                      height: MediaQuery.sizeOf(context).height * 0.01,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Image.asset('assets/images/from.png'),
                         SizedBox(
-                          width: mediaQuary.height * 0.01,
+                          width: mediaQuary.width * 0.02,
                         ),
                         Text(
                           from,
-                          style: const TextStyle(
-                              fontSize: 15, color: Color(0xffE60024)),
+                          style:
+                              TextStyle(fontSize: 15, color: Color(0xffE60024)),
                         )
                       ],
                     ),
@@ -109,13 +111,13 @@ class MyTripDelete extends StatelessWidget {
                         ),
                         Text(
                           to,
-                          style: const TextStyle(
-                              fontSize: 15, color: Color(0xffA8A8A8)),
+                          style:
+                              TextStyle(fontSize: 15, color: Color(0xffA8A8A8)),
                         )
                       ],
                     ),
                     SizedBox(
-                      height: mediaQuary.height * 0.01,
+                      height: mediaQuary.height * 0,
                     ),
                     Row(
                       children: [
@@ -129,7 +131,7 @@ class MyTripDelete extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: mediaQuary.height * 0,
+                      height: mediaQuary.height * 0.01,
                     ),
                     Row(
                       children: [
@@ -142,13 +144,34 @@ class MyTripDelete extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25),
                               ),
-                              minimumSize: Size(200, 35)),
+                              minimumSize: Size(100, 35)),
                           child: const Text(
-                            'Delete',
+                            'Decline',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Color(0xff030F09),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: mediaQuary.width * 0.02),
+                        ElevatedButton(
+                          onPressed: () {
+                            // Navigator.pushReplacementNamed(
+                            //     context, DetailsPage.routeName);
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xffE60024),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              minimumSize: Size(100, 35)),
+                          child: const Text(
+                            'Details',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xffFFFFFF),
                             ),
                           ),
                         ),

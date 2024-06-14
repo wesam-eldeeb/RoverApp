@@ -1,17 +1,17 @@
 import 'package:Rover/featuers/Category/pages/tab_container.dart';
-import 'package:Rover/featuers/My%20Trip/widgets/myTrip_delete.dart';
-import 'package:Rover/featuers/My%20Trip/widgets/myTrip_item.dart';
+import 'package:Rover/featuers/My%20Trip/widgets/myTrip_delete_passenger.dart';
+import 'package:Rover/featuers/My%20Trip/widgets/myTrip_item_passenger.dart';
 import 'package:flutter/material.dart';
 
-class MytripScreen extends StatelessWidget {
-  static const String routeName = 'myTrip_screen';
+class MytripScreenPassenger extends StatelessWidget {
+  static const String routeName = 'myTrip_screen_passenger';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'MyTrip',
+            'MyTrip(Passenger)',
             style: TextStyle(
               color: Color(0xff030F09),
               fontSize: 18,
@@ -73,7 +73,7 @@ class MytripScreen extends StatelessWidget {
                   // ],
                   // )),
                 ),
-                MyTripItem(
+                MyTripItemPassenger(
                     date: "16/2/2024",
                     day: "Monday",
                     time: "3pm",
@@ -81,7 +81,7 @@ class MytripScreen extends StatelessWidget {
                     from: "Cairo",
                     price: "100 LE",
                     image: AssetImage("assets/images/person.png")),
-                MyTripItem(
+                MyTripItemPassenger(
                     date: "16/2/2024",
                     day: "Monday",
                     time: "3pm",
@@ -89,7 +89,7 @@ class MytripScreen extends StatelessWidget {
                     from: "Cairo",
                     price: "100 LE",
                     image: AssetImage("assets/images/person.png")),
-                MyTripDelete(
+                MyTripDeletePassenger(
                     date: "16/2/2024",
                     day: "Monday",
                     time: "3pm",

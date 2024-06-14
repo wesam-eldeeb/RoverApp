@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MyTripItem extends StatelessWidget {
+class MyTripItemDriver extends StatelessWidget {
   String date;
   String day;
   String time;
@@ -9,7 +9,7 @@ class MyTripItem extends StatelessWidget {
   String price;
   AssetImage image;
 
-  MyTripItem(
+  MyTripItemDriver(
       {required this.date,
       required this.day,
       required this.time,
@@ -131,7 +131,7 @@ class MyTripItem extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: mediaQuary.height * 0,
+                      height: mediaQuary.height * 0.01,
                     ),
                     Row(
                       children: [
@@ -144,7 +144,7 @@ class MyTripItem extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25),
                               ),
-                              minimumSize: Size(100, 35)),
+                              minimumSize: Size(50, 35)),
                           child: const Text(
                             'Decline',
                             style: TextStyle(
@@ -157,16 +157,38 @@ class MyTripItem extends StatelessWidget {
                         SizedBox(width: mediaQuary.width * 0.02),
                         ElevatedButton(
                           onPressed: () {
-                            // Handle accept trip button press
+                            // Navigator.pushReplacementNamed(
+                            //     context, DetailsPage.routeName);
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xffE60024),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25),
                               ),
-                              minimumSize: Size(100, 35)),
+                              minimumSize: Size(50, 35)),
                           child: const Text(
                             'Details',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xffFFFFFF),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: mediaQuary.width * 0.02),
+                        ElevatedButton(
+                          onPressed: () {
+                            // Navigator.pushReplacementNamed(
+                            //     context, DetailsPage.routeName);
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xffE60024),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              minimumSize: Size(50, 35)),
+                          child: const Text(
+                            'Update',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,

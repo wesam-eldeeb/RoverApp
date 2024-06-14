@@ -1,17 +1,18 @@
-import 'package:Rover/featuers/Category/widgets/tab_item.dart';
-import 'package:Rover/featuers/My%20Trip/widgets/myTrip_delete.dart';
-import 'package:Rover/featuers/My%20Trip/widgets/myTrip_item.dart';
+import 'package:Rover/featuers/Category/pages/tab_container.dart';
+import 'package:Rover/featuers/My%20Trip/widgets/myTrip_delete_driver.dart';
 import 'package:flutter/material.dart';
 
-class MytripScreenNew extends StatelessWidget {
-  static const String routeName = 'myTrip_screen_new';
+import '../widgets/myTrip_item_driver.dart';
+
+class MytripScreenDriver extends StatelessWidget {
+  static const String routeName = 'myTrip_screen_driver';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'MyTrip',
+            'MyTrip(Driver)',
             style: TextStyle(
               color: Color(0xff030F09),
               fontSize: 18,
@@ -64,14 +65,16 @@ class MytripScreenNew extends StatelessWidget {
                   ),
                 ),
                 Container(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    TabItem(isSelected: false, source: "All"),
-                    TabItem(isSelected: true, source: "New"),
-                  ],
-                )),
-                MyTripItem(
+                  child: TabContainer(),
+                  //   child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  // children: [
+                  //   TabItem(isSelected: true, source: "All"),
+                  //   TabItem(isSelected: false, source: "New"),
+                  // ],
+                  // )),
+                ),
+                MyTripItemDriver(
                     date: "16/2/2024",
                     day: "Monday",
                     time: "3pm",
@@ -79,7 +82,7 @@ class MytripScreenNew extends StatelessWidget {
                     from: "Cairo",
                     price: "100 LE",
                     image: AssetImage("assets/images/person.png")),
-                MyTripItem(
+                MyTripItemDriver(
                     date: "16/2/2024",
                     day: "Monday",
                     time: "3pm",
@@ -87,7 +90,7 @@ class MytripScreenNew extends StatelessWidget {
                     from: "Cairo",
                     price: "100 LE",
                     image: AssetImage("assets/images/person.png")),
-                MyTripDelete(
+                MyTripDeleteDriver(
                     date: "16/2/2024",
                     day: "Monday",
                     time: "3pm",

@@ -1,6 +1,5 @@
 import 'package:Rover/cache_helper.dart';
 import 'package:Rover/featuers/config/constants/applacation_theme_manger.dart';
-import 'package:Rover/featuers/details/details.dart';
 import 'package:Rover/featuers/home/pages/home_map_view.dart';
 import 'package:Rover/featuers/login/pages/login_view.dart';
 import 'package:Rover/featuers/register/pages/register_view.dart';
@@ -11,8 +10,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'firebase_options.dart';
 import 'featuers/Apis/Trip/model/journey_provider.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,18 +42,18 @@ class MyApp extends StatelessWidget {
       theme: ApplacationThemeManger.lightTheme,
       darkTheme: ApplacationThemeManger.darkTheme,
 
-      // initialRoute: SplashView.routeName,
-      // routes: {
-      //   SplashView.routeName: (context) => const SplashView(),
-      //   LoginView.routeName: (context) => LoginView(),
-      //   RegisterView.routeName: (context) => RegisterView(),
-      //   HomeMapView.routeName: (context) => HomeMapView(),
-      //   // VerivicationView.routeName: (context) => VerivicationView(),
-      // },
-      // home: FirebaseAuth.instance.currentUser != null &&
-      //         FirebaseAuth.instance.currentUser!.emailVerified
-      //     ? HomeMapView()
-      //     : LoginView(),
+      initialRoute: SplashView.routeName,
+      routes: {
+        SplashView.routeName: (context) => const SplashView(),
+        LoginView.routeName: (context) => LoginView(),
+        RegisterView.routeName: (context) => RegisterView(),
+        HomeMapView.routeName: (context) => HomeMapView(),
+        // VerivicationView.routeName: (context) => VerivicationView(),
+      },
+      home: FirebaseAuth.instance.currentUser != null &&
+              FirebaseAuth.instance.currentUser!.emailVerified
+          ? HomeMapView()
+          : LoginView(),
 
       // home:VerivicationView() ,
 // home:CompleteProfile(),
@@ -62,7 +61,7 @@ class MyApp extends StatelessWidget {
 //  home: LoginView(),
 //home: RegisterView(),
 //home: AskAndAnswerPage(),
-home:DetailsPage(),
+// home:DetailsPage(),
 //home: ChatPage() ,
 
 //home: HowToUse(),
