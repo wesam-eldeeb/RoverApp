@@ -1,4 +1,4 @@
-import 'package:Rover/featuers/My%20Trip/pages/myTrip_screen_passenger.dart';
+import 'package:Rover/featuers/My%20Trip/pages/myTrip_screen.dart';
 import 'package:Rover/featuers/anyService/pages/any_service.dart';
 import 'package:Rover/featuers/config/constants/colors/my_colors.dart';
 import 'package:Rover/featuers/profile/pages/profile_view.dart';
@@ -92,21 +92,10 @@ class CustomNavigationDrawer extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            // buildListTileWithArrow(Icons.trip_origin, 'My Trips(Driver)', () {
-            //   Navigator.push(context,
-            //       MaterialPageRoute(builder: (BuildContext context) {
-            //     return MytripScreenDriver();
-            //   }));
-            // }),
-            // SizedBox(
-            //   height: 10,
-            // ),
             buildListTileWithArrow(Icons.trip_origin, 'My Trips', () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (BuildContext context) {
-                return MytripScreenPassenger();
-                //return MytripScreenDriver();
-                ///based on API
+                    return MytripScreen();
               }));
             }),
             //any Service

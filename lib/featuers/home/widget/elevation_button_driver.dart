@@ -7,9 +7,9 @@ import 'package:Rover/featuers/startJourny/pages/start_journy.dart';
 import 'package:flutter/material.dart';
 
 class ElvationButtonDriver extends StatelessWidget {
-  ElvationButtonDriver({
-    Key? key,
-  });
+  ElvationButtonDriver({required this.onTap});
+
+  VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

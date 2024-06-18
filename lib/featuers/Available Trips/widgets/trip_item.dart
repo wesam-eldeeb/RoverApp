@@ -1,22 +1,30 @@
+import 'package:Rover/featuers/Available%20Trips/models/available_model.dart';
 import 'package:flutter/material.dart';
 
 class TripItem extends StatelessWidget {
-  String name;
-  String destination;
-  String travelTime;
-  String numPassengers;
-  String cost;
-  bool isAccepted;
-  AssetImage image;
-
   TripItem(
-      {required this.name,
-      required this.destination,
-      required this.travelTime,
-      required this.numPassengers,
-      required this.cost,
-      required this.isAccepted,
-      required this.image});
+    void print, {
+    required this.availableTips,
+    Key? key,
+  }) : super(key: key);
+
+  // String name;
+  // String destination;
+  // String travelTime;
+  // String numPassengers;
+  // String cost;
+  // bool isAccepted;
+  // AssetImage image;
+
+  // TripItem(
+  //     {required this.name,
+  //     required this.destination,
+  //     required this.travelTime,
+  //     required this.numPassengers,
+  //     required this.cost,
+  //     required this.isAccepted,
+  //     required this.image});
+  AvailableModel availableTips;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +53,8 @@ class TripItem extends StatelessWidget {
               height: mediaQuary.height * 0.1,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(35),
-                image: DecorationImage(image: image),
+                image: DecorationImage(
+                    image: AssetImage('${availableTips.driver_Picture}')),
               ),
             ),
             SizedBox(
@@ -59,11 +68,11 @@ class TripItem extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(name,
+                      Text('${availableTips.driver_Name}',
                           style: const TextStyle(
                               fontSize: 16.0, fontWeight: FontWeight.bold)),
                       SizedBox(width: mediaQuary.width * 0.2),
-                      Text(cost,
+                      Text('${availableTips.price.toString()}',
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16.0,
@@ -96,16 +105,16 @@ class TripItem extends StatelessWidget {
                         width: mediaQuary.width * 0.01,
                       ),
                       Text(
-                        destination,
+                        '${availableTips.to}',
                         style: const TextStyle(color: Color(0xffE60024)),
                       ),
                       SizedBox(
                         width: mediaQuary.width * 0.01,
                       ),
-                      Text(
-                        '|  $travelTime',
-                        style: const TextStyle(color: Color(0xffA8A8A8)),
-                      ),
+                      // Text(
+                      //   '|  ' '${availableTips.time}',
+                      //   style: const TextStyle(color: Color(0xffA8A8A8)),
+                      // ),
                     ],
                   ),
                   SizedBox(
@@ -116,11 +125,15 @@ class TripItem extends StatelessWidget {
                       children: [
                         Image.asset('assets/images/pepo.png'),
                         Text(
-                          numPassengers,
+                          '${availableTips.seatsAvaliable}',
                           style: const TextStyle(
                             color: Color(0xffE60024),
                           ),
-                        )
+                        ),
+                        Text(
+                          '|  ' '${availableTips.time}',
+                          style: const TextStyle(color: Color(0xffA8A8A8)),
+                        ),
                       ]),
                   SizedBox(
                     height: mediaQuary.height * 0.001,

@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import '../config/constants/colors/my_colors.dart';
 import '../login/widgets/text_formfild_custom.dart';
 import '../settings/setting_provider.dart';
-
 //import 'package:provider/provider.dart';
 //import 'package:tutorial_april/utils.dart';
 
@@ -38,7 +37,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
 
   var NumberLicenseDriverController = TextEditingController();
 
-  var  CarIsModelController = TextEditingController();
+  var CarIsModelController = TextEditingController();
 
   var DescriptionController = TextEditingController();
 
@@ -107,7 +106,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                                     const Icon(Icons.car_rental_outlined),
                                 controller: NumberCarController,
                                 keyboardType: TextInputType.name,
-                                ////////validator//////
+////////validator//////
                                 validator: (value) {
                                   if (value == null || value.trim().isEmpty) {
                                     return 'You must enter your car linces image ';
@@ -290,12 +289,13 @@ class _CompleteProfileState extends State<CompleteProfile> {
 
                                     backgroundColor: theme.primaryColor,
                                     //shape
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0)),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
                                       //text
                                       Text(
                                         "Save",

@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 
 class DetailsPage extends StatefulWidget {
-  static const String routeName = "details_page";
-
   const DetailsPage({Key? key}) : super(key: key);
 
   @override

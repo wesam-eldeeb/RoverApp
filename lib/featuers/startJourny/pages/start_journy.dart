@@ -249,34 +249,34 @@
 //         style: TextStyle(
 //             color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16.0),
 //       ),
-    //       const SizedBox(height: 10.0),
-    //       Row(
-    //         children: [
-    //           Radio(
-    //             value: 1,
-    //             groupValue: _genderValue,
-    //             onChanged: (int? value) {
-    //               setState(() {
-    //                 _genderValue = value;
-    //               });
-    //             },
-    //           ),
-    //           Text('Female'),
-    //           Radio(
-    //             value: 0,
-    //             groupValue: _genderValue,
-    //             onChanged: (int? value) {
-    //               setState(() {
-    //                 _genderValue = value;
-    //               });
-    //             },
-    //           ),
-    //           Text('Male'),
-    //           Radio(
-    //             value: 2,
-    //             groupValue: _genderValue,
-    //             onChanged: (int? value) {
-    //               setState(() {
+//       const SizedBox(height: 10.0),
+//       Row(
+//         children: [
+//           Radio(
+//             value: 1,
+//             groupValue: _genderValue,
+//             onChanged: (int? value) {
+//               setState(() {
+//                 _genderValue = value;
+//               });
+//             },
+//           ),
+//           Text('Female'),
+//           Radio(
+//             value: 0,
+//             groupValue: _genderValue,
+//             onChanged: (int? value) {
+//               setState(() {
+//                 _genderValue = value;
+//               });
+//             },
+//           ),
+//           Text('Male'),
+//           Radio(
+//             value: 2,
+//             groupValue: _genderValue,
+//             onChanged: (int? value) {
+//               setState(() {
 //                 _genderValue = value;
 //               });
 //             },
@@ -415,9 +415,6 @@
 //   _StartJournyState createState() => _StartJournyState();
 // }
 
-import 'package:Rover/featuers/profile/pages/profile_view.dart';
-import 'package:Rover/featuers/startJourny/widgets/build_label_and_textField.dart';
-import 'package:Rover/featuers/startJourny/widgets/gender_journy_type.dart';
 // class _StartJournyState extends State<StartJourny> {
 //   int? _genderValue;
 //
@@ -549,25 +546,26 @@ import 'package:Rover/featuers/startJourny/widgets/gender_journy_type.dart';
 //     // }
 //   }
 // }
+import 'package:Rover/featuers/profile/pages/profile_view.dart';
+import 'package:Rover/featuers/startJourny/services/strat_trip_service.dart';
+import 'package:Rover/featuers/startJourny/widgets/build_label_and_textField.dart';
+import 'package:Rover/featuers/startJourny/widgets/gender_journy_type.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../Apis/Trip/model/journey.dart';
-import '../../Apis/Trip/model/journey_provider.dart';
 
 class StartJourney extends StatelessWidget {
   final TextEditingController _fromController = TextEditingController();
   final TextEditingController _toController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
-  final TextEditingController _timeController = TextEditingController();
-  final TextEditingController _startTimeController = TextEditingController();
-  final TextEditingController _expectedTimeController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
-  final TextEditingController _driverBirthdayController =
+  final TextEditingController _timeController = TextEditingController();
+  final TextEditingController _expecteda_arrivaleController =
+      TextEditingController();
+  final TextEditingController _seatsavaliableController =
       TextEditingController();
   final TextEditingController _plateNumberController = TextEditingController();
-  final TextEditingController _seatsAvailableController =
-      TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
+  final TextEditingController _driveridController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -619,82 +617,86 @@ class StartJourney extends StatelessWidget {
               buildLabelAndTextField(
                   'Time', Icons.access_time, '4:00 PM', _timeController),
               SizedBox(height: 20.0),
-              buildLabelAndTextField('Start Time', Icons.access_time, '4:00 PM',
-                  _startTimeController),
               SizedBox(height: 20.0),
-              buildLabelAndTextField('Expected Time', Icons.access_time,
-                  '6:00 PM', _expectedTimeController),
+              buildLabelAndTextField('expected Arrivale', Icons.access_time,
+                  '2024-06-17', _expecteda_arrivaleController),
               SizedBox(height: 20.0),
               buildLabelAndTextField(
                   'Date', Icons.calendar_today, '2024-05-03', _dateController),
               SizedBox(height: 20.0),
-              buildLabelAndTextField('Birthday (Driver)', Icons.calendar_today,
-                  '1995-05-03', _driverBirthdayController),
+              buildLabelAndTextField('user id (Driver)', Icons.calendar_today,
+                  'ebrahem', _driveridController),
               SizedBox(height: 20.0),
               buildLabelAndTextField('Plate Number', Icons.directions_car,
                   'ABC123', _plateNumberController),
               SizedBox(height: 20.0),
               buildLabelAndTextField('Seats Available', Icons.event_seat, '2',
-                  _seatsAvailableController),
+                  _seatsavaliableController),
               SizedBox(height: 20.0),
               GenderSelection(),
               SizedBox(height: 20.0),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   // التحقق من القيم المدخلة
                   if (_fromController.text.isEmpty ||
                       _toController.text.isEmpty ||
                       _priceController.text.isEmpty ||
                       _timeController.text.isEmpty ||
-                      _startTimeController.text.isEmpty ||
-                      _expectedTimeController.text.isEmpty ||
+                      _expecteda_arrivaleController.text.isEmpty ||
+                      _genderController.text.isEmpty ||
                       _dateController.text.isEmpty ||
-                      _driverBirthdayController.text.isEmpty ||
+                      _driveridController.text.isEmpty ||
                       _plateNumberController.text.isEmpty ||
-                      _seatsAvailableController.text.isEmpty) {
+                      _seatsavaliableController.text.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Please fill in all fields')),
                     );
-                    return;
-                  }
+                  } else {
+                    try {
+                      // final double price = int.parse(_priceController.text);
+                      // final int seatsAvailable =
+                      //     int.parse(_seatsAvailableController.text);
 
-                  try {
-                    final double price = double.parse(_priceController.text);
-                    final int seatsAvailable =
-                        int.parse(_seatsAvailableController.text);
+                      // final journey = StartTripModel(
+                      //     from: _fromController.text,
+                      //     to: _toController.text,
+                      //     price: price,
+                      //     date: _timeController.text,
+                      //     time: _timeController.text,
+                      //     seatsAvaliable: seatsAvailable,
+                      //     carNumber: 'ABC1',
+                      //     gender: '0',
+                      //     statusId: '0',
+                      //     // driverId: FirebaseAuth.instance.currentUser?.uid,
+                      //     driverId: 'alaa1',
+                      //     expected_Arrivale: '0');
+                      final response = await SrartTripService.addTrip(
+                        from: _fromController.text,
+                        to: _toController.text,
+                        price: _priceController,
+                        date: _dateController.text,
+                        time: _timeController.text,
+                        seatsAvaliable: _seatsavaliableController,
+                        carNumber: _plateNumberController,
+                        gender: _genderController,
+                        driverId: FirebaseAuth.instance.currentUser!.uid,
+                        expected_Arrivale: _expecteda_arrivaleController,
+                      );
 
-                    final journey = Journey(
-                      from: _fromController.text,
-                      to: _toController.text,
-                      price: price,
-                      time: _timeController.text,
-                      startTime: _startTimeController.text,
-                      expectedTime: _expectedTimeController.text,
-                      date: _dateController.text,
-                      driverBirthday: _driverBirthdayController.text,
-                      plateNumber: _plateNumberController.text,
-                      seatsAvailable: seatsAvailable,
-                      gender:
-                          Provider.of<JourneyProvider>(context, listen: false)
-                              .journey!
-                              .gender,
-                    );
-
-                    Provider.of<JourneyProvider>(context, listen: false)
-                        .createJourney(journey);
-                    Provider.of<JourneyProvider>(context, listen: false)
-                        .saveJourney();
-
-                    print('Journey saved: ${journey.toJson()}');
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Invalid input: ${e.toString()}')),
-                    );
+                      // print('Journey saved: ${journey.toJson()}');
+                      print('User created: $response');
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content: Text('Invalid input: ${e.toString()}')),
+                      );
+                      print('Invalid input: ${e.toString()}');
+                    }
                   }
                 },
                 child: Text('Save', style: TextStyle(color: Colors.white)),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.red,
+                  backgroundColor: Colors.red,
                 ),
               ),
               SizedBox(height: 20.0),

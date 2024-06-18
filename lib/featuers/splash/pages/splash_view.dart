@@ -22,10 +22,8 @@ class _SplashViewState extends State<SplashView> {
     Timer(
       const Duration(seconds: 2),
       () {
-        // اهو هنا بصوا هنا
         if (CacheHelper.getString(key: "userId").isNotEmpty) {
           Navigator.pushReplacementNamed(context, HomeMapView.routeName);
-
           //Api get user data(send user id to backend CacheHelper.getString(key:"userId"))
         } else {
           Navigator.pushReplacementNamed(context, LoginView.routeName);
