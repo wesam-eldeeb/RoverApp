@@ -4,9 +4,11 @@ import 'dart:io';
 import 'package:Rover/featuers/config/constants/colors/my_colors.dart';
 import 'package:Rover/featuers/login/pages/login_view.dart';
 import 'package:Rover/featuers/login/widgets/text_formfild_custom.dart';
+import 'package:Rover/featuers/register/logic/regis_logic.dart';
 import 'package:Rover/featuers/register/widgets/gender_register_type.dart';
 import 'package:Rover/featuers/settings/setting_provider.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +29,7 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   File? pickedImage;
   String? _url;
+  RegisLogic regisLogic = RegisLogic(dio: Dio());
 
   // Uint8List? _image;
 
@@ -58,16 +61,18 @@ class _RegisterViewState extends State<RegisterView> {
   var formKey = GlobalKey<FormState>();
 
   //(1)
-  var FirstNameController = TextEditingController();
+  var firstNameController = TextEditingController();
 
-  var LastNameController = TextEditingController();
+  // اول حرف من المتغير سمول مش كابتل
+  var lastNameController = TextEditingController();
 
-  var EamilController = TextEditingController();
+  var emailController = TextEditingController();
 
-  var PasswordController = TextEditingController();
+  var passwordController = TextEditingController();
 
-  var ConfirmPasswordController = TextEditingController();
-  var PhoneNumberController = TextEditingController();
+  var confirmPasswordController = TextEditingController();
+
+  var phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +188,7 @@ class _RegisterViewState extends State<RegisterView> {
                                   labelText: "First Name",
                                   //  hintText: "Enter Your FullName",
                                   prefixIcon: const Icon(Icons.person),
-                                  controller: FirstNameController,
+                                  controller: firstNameController,
                                   keyboardType: TextInputType.name,
                                   ////////validator//////
                                   validator: (value) {
@@ -206,7 +211,7 @@ class _RegisterViewState extends State<RegisterView> {
                                   labelText: "last Name",
                                   //  hintText: "Enter Your FullName",
                                   prefixIcon: const Icon(Icons.person),
-                                  controller: LastNameController,
+                                  controller: lastNameController,
                                   keyboardType: TextInputType.name,
                                   ////////validator//////
                                   validator: (value) {
@@ -230,7 +235,7 @@ class _RegisterViewState extends State<RegisterView> {
                           labelText: "Email",
                           hintText: "Enter Your Email",
                           prefixIcon: Icon(Icons.email),
-                          controller: EamilController,
+                          controller: emailController,
                           keyboardType: TextInputType.emailAddress,
 
                           //////////validator//////////
@@ -261,7 +266,7 @@ class _RegisterViewState extends State<RegisterView> {
                           labelText: "password",
                           hintText: "Enter Your password",
                           prefixIcon: const Icon(Icons.remove_red_eye),
-                          controller: PasswordController,
+                          controller: passwordController,
                           keyboardType: TextInputType.visiblePassword,
 
                           obscureText: true,
@@ -295,7 +300,7 @@ class _RegisterViewState extends State<RegisterView> {
                           labelText: "Confirm password",
                           hintText: "Enter Your password",
                           prefixIcon: const Icon(Icons.remove_red_eye),
-                          controller: ConfirmPasswordController,
+                          controller: confirmPasswordController,
                           obscureText: true,
                           keyboardType: TextInputType.visiblePassword,
 
@@ -304,7 +309,7 @@ class _RegisterViewState extends State<RegisterView> {
                             if (value == null || value.trim().isEmpty) {
                               return 'you must enter your password';
                             }
-                            if (value != PasswordController.text) {
+                            if (value != passwordController.text) {
                               return "Password Not Matched";
                             }
                             return null;
@@ -322,7 +327,7 @@ class _RegisterViewState extends State<RegisterView> {
                           labelText: "Phone Number",
                           hintText: "Enter Your phoneNumber",
                           prefixIcon: const Icon(Icons.mobile_friendly_rounded),
-                          controller: PhoneNumberController,
+                          controller: phoneNumberController,
                           keyboardType: TextInputType.phone,
                         ),
                         SizedBox(
@@ -378,20 +383,34 @@ class _RegisterViewState extends State<RegisterView> {
                                 try {
                                   final credential = await FirebaseAuth.instance
                                       .createUserWithEmailAndPassword(
-                                    email: EamilController.text,
-                                    password: PasswordController.text,
+                                    email: emailController.text,
+                                    password: passwordController.text,
                                   );
                                   credential.user!.uid;
                                   FirebaseAuth.instance.currentUser!
-                                      .sendEmailVerification();
-                                  final imageUrl = await uploadImage(
-                                      path:
-                                          '${credential.user!.uid}/images/${DateTime.now().toString()}',
-                                      file: pickedImage!);
+                                      .sendEmailVerification()
+                                      .then((value) async {
+                                    final imageUrl = await uploadImage(
+                                        path:
+                                            '${credential.user!.uid}/images/${DateTime.now().toString()}',
+                                        file: pickedImage!);
 
-                                  ///Api call credential.user!.uid , data ,imageUrl
-                                  Navigator.pushReplacementNamed(
-                                      context, LoginView.routeName);
+                                    await regisLogic
+                                        .regisData(
+                                            userId: credential.user!.uid,
+                                            imageUrl: imageUrl ??
+                                                'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png?20200919003010',
+                                            firstName: firstNameController.text,
+                                            lastName: lastNameController.text,
+                                            email: emailController.text,
+                                            password: passwordController.text,
+                                            phone: phoneNumberController.text,
+                                            gender: 0)
+                                        .then((value) {
+                                      Navigator.pushReplacementNamed(
+                                          context, LoginView.routeName);
+                                    });
+                                  });
                                 } on FirebaseAuthException catch (e) {
                                   print(
                                       'EEEEE================================$e');
